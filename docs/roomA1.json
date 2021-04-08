@@ -1,0 +1,100 @@
+{
+    "records": [
+        {
+            "People": 3,
+            "Temperature": 30.0,
+            "Humidity": 56.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 3,
+            "Temperature": 27.0,
+            "Humidity": 80.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 3,
+            "Temperature": 27.0,
+            "Humidity": 82.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 3,
+            "Temperature": 28.0,
+            "Humidity": 79.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 3,
+            "Temperature": 28.0,
+            "Humidity": 79.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 3,
+            "Temperature": 27.0,
+            "Humidity": 81.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 3,
+            "Temperature": 28.0,
+            "Humidity": 81.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 3,
+            "Temperature": 30.0,
+            "Humidity": 72.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 3,
+            "Temperature": 30.0,
+            "Humidity": 71.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 2,
+            "Temperature": 30.0,
+            "Humidity": 71.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 2,
+            "Temperature": 30.0,
+            "Humidity": 70.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 2,
+            "Temperature": 30.0,
+            "Humidity": 71.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 2,
+            "Temperature": 31.0,
+            "Humidity": 70.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 0,
+            "Temperature": 30.0,
+            "Humidity": 71.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 0,
+            "Temperature": 31.0,
+            "Humidity": 70.0,
+            "Time": "14:55"
+        },
+        {
+            "People": 0,
+            "Temperature": 30.0,
+            "Humidity": 71.0,
+            "Time": "14:55"
+        }
+    ]
+}

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Check Room</title>
+        <meta charset="UTF-8">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> <!-- Chart.js API CDN (requires internet)-->
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script> <!--Chart.js Data Labels (more css options for chart.js) API CDN (requires internet)-->
+        <link rel="stylesheet" type="text/css" href="styleRooms.css">
+    
+    </head>
+
+    <body>
+        <div class="container">
+                    <h1>Room A1</h1>
+                    <div class="card-header">
+                        <a href="MainPage.html">Main Page</a>
+                        <a href="RoomA2.html">Room A2</a>
+                    </div>
+                    <div class="canvas-card" style="position: relative; height: 900px; width: 1500px;">
+                        <canvas id="PeopleChart"></canvas>
+                        <canvas id="TemperatureChart"></canvas>
+                        <canvas id="humidityChart"></canvas>
+                    </div>
+        </div>
+
+        <script>
+        
+        Chart.defaults.global.plugins.datalabels.display = true;
+
+        var xmlhttp = new XMLHttpRequest();
+        var url = "roomA1.json";
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange = function(){
+            if(this.readyState == 4 && this.status == 200){
+                var data = JSON.parse(this.responseText);
+                //console.log(data);
+
+                //Get time from json
+                var TimeData = data.records.map(function(elem){
+                    return elem.Time;
+                });
+                //Get people from json
+                var AmtPeople = data.records.map(function(elem){
+                    return elem.People;
+                });
+                var Tempre = data.records.map(function(elem){
+                    return elem.Temperature;
+                    });
+                var humidity = data.records.map(function(elem){
+                    return elem.Humidity;
+                    });
+
+
+            /*
+                This is the chart that displays the amount of people: 
+                STARTS HERE
+            */
+            var ctx = document.getElementById('PeopleChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'bar',
+                // The data for our dataset
+                data: {
+                    labels: TimeData,
+                    datasets: [{
+                        label: 'Amount of People',
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgb(255, 99, 132)',
+                        borderWidth: 4,
+                        data: AmtPeople
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    maintainAspectRation: true,
+                    title:{
+                        display:true,
+                        text:"People in Room A1",
+                        fontSize:25,
+                        padding: 10,
+                        margin: 10,
+                        fontColor: "#000",
+                        position:"top"
+                    },
+                    scales: {
+                        yAxes:[{
+                            gridLines:{
+                                lineWidth: 1,
+                                zeroLineColor:"rgba(0,0,0)", 
+                                drawOnChartArea : true,
+                                fontColor:"rgba(0,0,0)"
+                            },
+                            ticks: {
+                                max: 10,
+                                min: 0,
+                                fontColor:"rgba(0,0,0)"
+                            }
+                        }],
+                        xAxes:[{
+                            gridLines:{
+                                lineWidth: 1,
+                                zeroLineColor:"rgba(0,0,0)",
+                                drawOnChartArea : true,
+                                fontColor:"rgba(0,0,0)"
+                            },
+                            ticks: {
+                                fontColor:"rgba(0,0,0)"
+                            }
+                        }]
+                    },
+                    legend:{
+                        position:"top",
+                        labels:{
+                            fontColor:'rgba(0,0,0)'
+                        }
+                    },
+                    layout:{
+                        padding:{
+                            left: 50,
+                            right: 50,
+                            bottom: 50,
+                            top: 50
+                        }
+                    },
+                    plugins:{
+                        datalabels:{
+                            color: "#000000",
+                            anchor: "end",
+                            align: "start",
+                            offset: -32,
+                            borderWidth: 2,
+                            borderColor: "#000000",
+                            borderRadius: 25,
+                            backgroundColor:(context) => {
+                                return context.dataset.backgroundColor;
+                            },
+                            font:{
+                                weight: "bold",
+                                size: "12",
+                            },
+                            formatter:(value) => {
+                                return value 
+                            }
+                        }
+                    }
+                }
+            });
+            /*
+                This is the chart that displays the PEOPLE: 
+                ENDS HERE
+            */
+            
+            /*
+                This is the chart that displays the TEMPERATURE: 
+                STARTS HERE
+            */
+            var ctx = document.getElementById('TemperatureChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+                // The data for our dataset
+                data: {
+                    labels: TimeData,
+                    datasets: [{
+                        label: 'Temperature',
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgb(255, 99, 132)',
+                        borderWidth: 4,
+                        data: Tempre
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    maintainAspectRation: true,
+                    title:{
+                        display:true,
+                        text:"Temperature in Room A1",
+                        fontSize:25,
+                        padding: 10,
+                        margin: 15,
+                        fontColor: "#000",
+                        position:"top"
+                    },
+                    scales: {
+                        yAxes:[{
+                            gridLines:{
+                                lineWidth: 1,
+                                zeroLineColor:"rgba(0,0,0)", 
+                                drawOnChartArea : true,
+                                fontColor:"rgba(0,0,0)"
+                            },
+                            ticks: {
+                                fontColor:"rgba(0,0,0)"
+                            }
+                        }],
+                        xAxes:[{
+                            gridLines:{
+                                lineWidth: 1,
+                                zeroLineColor:"rgba(0,0,0)",
+                                drawOnChartArea : true,
+                                fontColor:"rgba(0,0,0)"
+                            },
+                            ticks: {
+                                fontColor:"rgba(0,0,0)"
+                            }
+                        }]
+                    },
+                    legend:{
+                        position:"top"
+                    },
+                    layout:{
+                        padding:{
+                            left: 50,
+                            right: 50,
+                            bottom: 50,
+                            top: 50
+                        }
+                    },
+                    elements:{
+                        line:{
+                            tension:0
+                        }
+                    },
+                    plugins:{
+                        datalabels:{
+                            color: "#000000",
+                            anchor: "",
+                            align: "start",
+                            offset: -32,
+                            borderWidth: 2,
+                            borderColor: "#000000",
+                            borderRadius: 25,
+                            backgroundColor:(context) => {
+                                return context.dataset.backgroundColor;
+                            },
+                            font:{
+                                weight: "bold",
+                                size: "12",
+                            },
+                            formatter:(value) => {
+                                return value + "°C"
+                            }
+                        }
+                    }
+                }
+            });
+            /*
+                This is the chart that displays the TEMPERATURE: 
+                ENDS HERE
+            */
+
+            /*
+                This is the chart that displays the Humidity: 
+                STARTS HERE
+            */
+            var ctx = document.getElementById('humidityChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+                // The data for our dataset
+                data: {
+                    labels: TimeData,
+                    datasets: [{
+                        label: 'Humidity',
+                        backgroundColor: 'transparent',
+                        borderColor: 'rgb(255, 99, 132)',
+                        borderWidth: 4,
+                        data: humidity
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    responsive: true,
+                    maintainAspectRation: true,
+                    title:{
+                        display:true,
+                        text:"Humidity in Room A1",
+                        fontSize:25,
+                        padding: 10,
+                        margin: 15,
+                        fontColor: "#000",
+                        position:"top"
+                    },
+                    scales: {
+                        yAxes:[{
+                            gridLines:{
+                                lineWidth: 1,
+                                zeroLineColor:"rgba(0,0,0)", 
+                                drawOnChartArea : true,
+                                fontColor:"rgba(0,0,0)"
+                            },
+                            ticks: {
+                                fontColor:"rgba(0,0,0)"
+                            }
+                        }],
+                        xAxes:[{
+                            gridLines:{
+                                lineWidth: 1,
+                                zeroLineColor:"rgba(0,0,0)",
+                                drawOnChartArea : true,
+                                fontColor:"rgba(0,0,0)"
+                            },
+                            ticks: {
+                                fontColor:"rgba(0,0,0)"
+                            }
+                        }]
+                    },
+                    legend:{
+                        position:"top"
+                    },
+                    layout:{
+                        padding:{
+                            left: 50,
+                            right: 50,
+                            bottom: 50,
+                            top: 50
+                        }
+                    },
+                    elements:{
+                        line:{
+                            tension:0
+                        }
+                    },
+                    plugins:{
+                        datalabels:{
+                            color: "#000000",
+                            anchor: "",
+                            align: "start",
+                            offset: -32,
+                            borderWidth: 2,
+                            borderColor: "#000000",
+                            borderRadius: 25,
+                            backgroundColor:(context) => {
+                                return context.dataset.backgroundColor;
+                            },
+                            font:{
+                                weight: "bold",
+                                size: "12",
+                            },
+                            formatter:(value) => {
+                                return value + "%"
+                            }
+                        }
+                    }
+                }
+            });
+            /*
+                This is the chart that displays the Humidity: 
+                ENDS HERE
+            */
+
+
+
+            }
+        }
+            
+
+
+
+
+        </script>
+    </body>
+</html>

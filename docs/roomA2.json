@@ -1,0 +1,34 @@
+{
+    "records": [
+        {
+            "People": 0,
+            "Temperature": 0.0,
+            "Humidity": 0.0,
+            "Time": "16:28"
+        },
+        {
+            "People": 3,
+            "Temperature": 28.0,
+            "Humidity": 81.0,
+            "Time": "16:28"
+        },
+        {
+            "People": 3,
+            "Temperature": 29.0,
+            "Humidity": 81.0,
+            "Time": "16:28"
+        },
+        {
+            "People": 3,
+            "Temperature": 28.0,
+            "Humidity": 82.0,
+            "Time": "16:28"
+        },
+        {
+            "People": 0,
+            "Temperature": 28.0,
+            "Humidity": 79.0,
+            "Time": "16:28"
+        }
+    ]
+}
